@@ -2,7 +2,6 @@ package com.antonio.jamal.gameOfLife.gui;
 import java.awt.Dimension;
 import java.awt.Rectangle;
 
-
 public class DeadOrAlive extends Rectangle {
 	
 	private boolean isAlive;

@@ -15,8 +15,12 @@ public class Generation {
 				DeadOrAlive newCell = newGrid[row][col];
 
 				int neighbours = calculateNeighbours(grid, rows, cols, row, col);
+				
+				if (cell.isAlive() && neighbours > 3) newCell.makeDead();
+				if (cell.isAlive() && neighbours < 2) newCell.makeDead();
+				if (!cell.isAlive() && neighbours == 3) newCell.makeAlive();
 
-				if (cell.isAlive()) {
+				/*if (cell.isAlive()) {
 
 					if (neighbours > 3 || neighbours < 2) newCell.changeState();
 
@@ -24,7 +28,7 @@ public class Generation {
 
 					if (neighbours == 3) newCell.changeState();
 
-				}
+				}*/
 
 			}
 		}
