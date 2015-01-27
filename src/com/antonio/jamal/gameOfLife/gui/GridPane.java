@@ -12,7 +12,6 @@ import com.antonio.jamal.gameOfLife.Generation;
 
 
 public class GridPane extends JPanel {
-
 	int rows = 100;
 	int cols = 100;
 
@@ -23,7 +22,6 @@ public class GridPane extends JPanel {
 	Generation gen;
 
 	public GridPane() {
-
 		clickable = true;
 		isSetup = false;
 
@@ -35,9 +33,7 @@ public class GridPane extends JPanel {
 		addMouseListener(new MouseAdapter(){
 
 			public void mouseClicked(MouseEvent e) {
-
 				if (clickable) {
-					
 					int width = getWidth();
 					int height = getHeight();
 
@@ -50,19 +46,15 @@ public class GridPane extends JPanel {
 					cells[row][col].changeState();
 
 					repaint();
-
 				}
 			}
 		});
 
 		addMouseMotionListener(new MouseAdapter() {
-
 			public void mouseDragged(MouseEvent e) {
-
 				if (clickable && e.getX() <= (getWidth() - 1) 
 						&& e.getY() <= (getHeight() - 1) 
 						&& e.getX() >= 0 && e.getY() >= 0) {
-
 					int width = getWidth();
 					int height = getHeight();
 
@@ -76,25 +68,18 @@ public class GridPane extends JPanel {
 
 					repaint();
 				}
-
 			}
 		});
-
 	}
 
 	public void update() {
-
 		cells = gen.nextGeneration(cells, rows, cols);
-
 	}
 
 	public void clear() {
-
 		for (int row = 0 ; row < rows ; row++) {
 			for (int col = 0; col < cols ; col++) {
-
 				cells[row][col] = null;
-
 			}
 		}
 
@@ -105,22 +90,17 @@ public class GridPane extends JPanel {
 
 	@Override
 	public Dimension getPreferredSize() {
-
 		return new Dimension(500, 500);
-
 	}
 
 	@Override
 	public void invalidate() {
-
 		clear();
 		super.invalidate();
-
 	}
 
 	@Override
 	public void paintComponent(Graphics g) {
-
 		super.paintComponent(g);
 
 		Graphics2D g2 = (Graphics2D) g;
@@ -137,22 +117,17 @@ public class GridPane extends JPanel {
 		if(!isSetup) {
 			for (int row = 0 ; row < rows ; row++) {
 				for (int col = 0; col < cols ; col++) {
-
 					xOffset = col * cellWidth;
 					yOffset = row * cellHeight;
-
 					cells[row][col] = new DeadOrAlive(xOffset, yOffset, cellWidth, cellHeight);
-
 				}
 			}
 
 			isSetup = true;
-
 		}
 
 		for (int row = 0 ; row < rows ; row++) {
 			for (int col = 0; col < cols ; col++) {
-
 				DeadOrAlive cell = cells[row][col];
 
 				if (cell.isAlive()) {
@@ -162,7 +137,6 @@ public class GridPane extends JPanel {
 					g2.setPaint(Color.GRAY);
 					g2.draw(cell);
 				}
-
 			}
 		}
 	}
